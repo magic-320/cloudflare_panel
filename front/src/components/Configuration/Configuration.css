@@ -1,0 +1,178 @@
+.configuration-page {
+  display: flex;
+  background-color: #2e2e2e;
+  color: #fff;
+  width: 1000px;
+  margin: 0px auto;
+  border-radius: 10px;
+}
+
+.configuration-container {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+
+
+/* Scrollbar styles for Webkit browsers (Chrome, Safari, Edge) */
+.configuration-container::-webkit-scrollbar {
+  width: 10px;
+  /* Narrow scrollbar */
+}
+
+.configuration-container::-webkit-scrollbar-track {
+  background: #2a2a2a;
+  /* Slightly darker track (to blend with dark mode) */
+  border-radius: 10px;
+  /* Rounded track for smooth look */
+}
+
+.configuration-container::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  /* Light-colored thumb */
+  border-radius: 10px;
+  /* Rounded thumb for a sleek appearance */
+  border: 2px solid #2a2a2a;
+  /* Adds padding between thumb and track */
+}
+
+.configuration-container::-webkit-scrollbar-thumb:hover {
+  background-color: #fff;
+  /* Make thumb brighter when hovered */
+}
+
+.configuration-checkbox-group {
+  width: 278px;
+  padding: 10px;
+}
+
+.configuration-label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: 5px;
+}
+
+.configuration-label input {
+  width: 15px !important;
+}
+
+.configuration-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.configuration-form {
+  background-color: #696666b0;
+  padding: 10px;
+  border-radius: 8px;
+  width: 750px;
+  margin: auto;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  width: 730px;
+  padding: 10px;
+}
+
+.form-group label {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.form-group input {
+  padding: 5px;
+  width: 500px;
+  border: 1px #ffffff7a solid;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #565454;
+}
+
+
+.form-group select {
+  padding: 5px;
+  width: 650px;
+  border-radius: 4px;
+  background-color: #565454;
+  border: 1px #ffffff7a solid;
+  color: #fff;
+}
+
+.form-group select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.form-group textarea {
+  resize: vertical;
+  width: 710px;
+  background-color: #565454;
+  color: #fff;
+  border: 1px #ffffff7a solid;
+  border-radius: 4px;
+  height: 20px;
+}
+
+.submit-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: rgb(204, 54, 54);
+}
+
+.country-select-container {
+  width: 225px;
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.country-select {
+  width: 225px !important;
+  margin-right: 25px;
+}
+
+.whitelist-item {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.whitelisted-countries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.remove-button {
+  padding: 3px 6px;
+  background-color: #b1383f;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}

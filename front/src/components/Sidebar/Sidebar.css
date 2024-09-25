@@ -1,0 +1,99 @@
+/* src/components/Sidebar.css */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100%;
+  background-color: #333;
+  /* Dark background color for the sidebar */
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Center items horizontally */
+}
+
+.current-page {
+  color: white;
+  /* Text color for the current page */
+  margin-bottom: 10px;
+  /* Space below the current page text */
+  text-align: center;
+  /* Center the text */
+}
+
+/* New styling for navigation links */
+.nav-links {
+  background-color: #444;
+  /* Different background color for the nav area */
+  padding: 10px;
+  /* Add padding around the nav area */
+  border-radius: 5px;
+  /* Optional: round the corners */
+  width: 100%;
+  /* Full width for the nav area */
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  /* Full width for the list */
+}
+
+.sidebar ul li {
+  padding: 10px;
+  text-align: center;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  padding: 10px 0;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.sidebar ul li span {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  padding: 10px 0;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.sidebar ul li a:hover {
+  background-color: #575757;
+  /* Hover background color */
+  border-radius: 5px;
+  /* Rounded corners */
+}
+
+.sidebar ul li span:hover {
+  background-color: #575757;
+  /* Hover background color */
+  border-radius: 5px;
+  /* Rounded corners */
+}
+
+.sidebar ul li a:active {
+  background-color: #575757;
+  /* Active state background color */
+  border-radius: 5px;
+  /* Rounded corners */
+}
+
+/* Active link styling */
+.sidebar ul li a.active {
+  background-color: #f28020;
+  /* Different background color for the active link */
+  border-radius: 5px;
+  /* Rounded corners */
+}

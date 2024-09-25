@@ -1,0 +1,16 @@
+{
+  "PageStatus": "ON",
+  "Enabled": "OFF",
+  "Password": "",
+  "SoftwareName": "",
+  "ZIPName": "",
+  "GEO": [],
+  "BlockedGEO": "AM,AZ,BY,KZ,KG,MD,RU,TJ,UZ",
+  "FileName": "",
+  "OS": [],
+  "PatchDownloadLinks": "",
+  "Version": "V1",
+  "AndroidLink": "",
+  "iOSLink": "",
+  "MacOSLink": ""
+}

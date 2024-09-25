@@ -1,0 +1,288 @@
+.table-container {
+  padding: 20px;
+  overflow: auto;
+  background-color: #333;
+  /* Dark background for dark mode */
+  color: #fff;
+  /* White text for readability */
+  scrollbar-width: thin;
+  /* For Firefox */
+  scrollbar-color: #ccc #2a2a2a;
+  margin: 0px auto;
+
+  /* Light thumb and slightly darker track */
+}
+
+/* Scrollbar styles for Webkit browsers (Chrome, Safari, Edge) */
+.table-container::-webkit-scrollbar {
+  width: 10px;
+  /* Narrow scrollbar */
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: #2a2a2a;
+  /* Slightly darker track (to blend with dark mode) */
+  border-radius: 10px;
+  /* Rounded track for smooth look */
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  /* Light-colored thumb */
+  border-radius: 10px;
+  /* Rounded thumb for a sleek appearance */
+  border: 2px solid #2a2a2a;
+  /* Adds padding between thumb and track */
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background-color: #fff;
+  /* Make thumb brighter when hovered */
+}
+
+.sort_by_date {
+  background-color: #1E90FF;
+  color: white;
+  border: none;
+  padding: 11px;
+  border-radius: 5px;
+}
+
+.ip_a:hover {
+  text-decoration: none;
+}
+
+.back_button {
+  background-color: #fff;
+  color: #222;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+}
+
+.back_button:hover {
+  text-decoration: none;
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #3b3a3a;
+  /* Light border */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+  /* Dark shadow */
+}
+
+th,
+td {
+  padding: 8px 12px;
+  text-align: left;
+  height: 27px;
+  color: #fff;
+}
+
+.copy_icon {
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.shortcut_icon {
+  margin-left: auto;
+  cursor: pointer;
+  float: right;
+  margin-top: 4px;
+}
+
+.flag_ip_cs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-top: none;
+  justify-content: space-between;
+}
+
+.flag_ip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-top: none;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  padding: 6px 12px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button.blocked {
+  background-color: #dc3545;
+}
+
+.status-dot {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.status-online {
+  background-color: #28a745;
+  /* Green */
+}
+
+.status-offline {
+  background-color: #dc3545;
+  /* Red */
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination-button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  background-color: #333;
+  cursor: pointer;
+  display: flex;
+}
+
+.pagination-button.active {
+  background-color: #5a5f65;
+  color: white;
+  border-color: #5a5f65;
+}
+
+.pagination-button.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+
+.highlight {
+  background-color: yellow;
+  /* Change this color as desired */
+  font-weight: bold;
+}
+
+.settings {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+
+.configuration_button {
+  padding: 8px 16px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.configuration_field {
+  padding: 10px;
+  border: #e0dddd 1px solid;
+  margin-bottom: 20px;
+}
+
+.th_span_icon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  /* Ensures the popup is above other content */
+}
+
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  /* Add relative positioning */
+}
+
+.close-icon {
+  position: absolute;
+  /* Position the icon in the top-right corner */
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  /* Change cursor to pointer */
+  font-size: 24px;
+  /* Adjust size */
+  color: #333;
+  /* Change color as needed */
+}
+
+.table-row:nth-child(odd) {
+  background-color: #333;
+  /* light gray */
+}
+
+.table-row:nth-child(even) {
+  background-color: #474747;
+  /* dark gray */
+}
+
+.table-row {
+  cursor: pointer;
+  /* Pointer cursor to indicate clickability */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  /* Smooth transitions */
+}
+
+.table-row:hover {
+  background-color: #505050;
+  /* Slightly lighter background on hover */
+  transform: scale(1.01);
+  /* Small scale effect for emphasis */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  /* Optional subtle shadow */
+}
+
+.table-row:active {
+  background-color: #666666;
+  /* Darker shade on click */
+  transform: scale(0.99);
+  /* Slightly shrink on click */
+}
