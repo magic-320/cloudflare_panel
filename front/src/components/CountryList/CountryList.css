@@ -64,6 +64,7 @@
   align-items: center;
   gap: 5px;
   text-decoration: none;
+  height: 25px;
 }
 
 .back_button:hover {
@@ -285,4 +286,13 @@ button.blocked {
   /* Darker shade on click */
   transform: scale(0.99);
   /* Slightly shrink on click */
+}
+
+.infomationbox {
+  width: 275px;
+  height: 100px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  background-color: #474747;
+  padding: 15px;
 }

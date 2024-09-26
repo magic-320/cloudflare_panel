@@ -172,3 +172,13 @@ a {
   background-color: #f0f0f0;
   /* Change background on hover */
 }
+
+.sortbyusername {
+  color: #4CAF50;
+  background-color: #ccc;
+}
+
+.sortbyusernameactive {
+  color: #4CAF50;
+  background-color: #cccccc88;
+}

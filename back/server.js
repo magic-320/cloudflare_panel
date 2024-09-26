@@ -202,29 +202,32 @@ app.post('/api/set_individual', (req, res) => {
     const { newUrls } = req.body;
     const domain = newUrls[0];
 
-    fs.readFile('urls.json', 'utf8', (err, data) => {
+    // Read the JSON file asynchronously
+    fs.readFile('domain.json', 'utf8', async(err, data) => {
         if (err) {
-            console.error('Error reading the file:', err);
+            console.error('Error reading file', err);
             return;
         }
-        const jsonData = JSON.parse(data);
-
-        let isExist = jsonData.url.includes(domain);
-
-        if (!isExist) {
-            const newURLs = jsonData.url;
-            newURLs.push(domain);
-
-            const newData = {
-                url: newURLs
+        // Parse JSON data
+        const preData = JSON.parse(data);
+        
+        await preData.map(el => {
+            if (el.url == domain) {
+                el.reset = 1;
             }
+        });
 
-            const newJsonData = JSON.stringify(newData, null, 2);
-            fs.writeFileSync('urls.json', newJsonData, 'utf-8');
-        }
+        const jsonData = JSON.stringify(preData, null, 2); // 'null, 2' for pretty formatting
 
-        return res.json({ message: "Set edit configuration flag" })
-
+        fs.writeFile('domain.json', jsonData, (err) => {
+            if (err) {
+                console.error('Error writing file', err);
+            } else {
+                console.log('File successfully written');
+                res.json({ msg: 'success' });
+            }
+        });
+        
     });
 
 });
@@ -234,20 +237,33 @@ app.post('/api/set_individual', (req, res) => {
 app.post('/api/del_individual', (req, res) => {
     const { domain } = req.body;
 
-    fs.readFile('urls.json', 'utf8', (err, data) => {
+    // Read the JSON file asynchronously
+    fs.readFile('domain.json', 'utf8', async(err, data) => {
         if (err) {
-            console.error('Error reading the file:', err);
+            console.error('Error reading file', err);
             return;
         }
-        const jsonData = JSON.parse(data);
-        const newURLs = jsonData.url.filter(item => item !== domain);
+        // Parse JSON data
+        const preData = JSON.parse(data);
+        
+        await preData.map(el => {
+            if (el.url == domain) {
+                el.reset = 0;
+            }
+        });
 
-        const newData = {
-            url: newURLs
-        }
-        const newJsonData = JSON.stringify(newData, null, 2);
-        fs.writeFileSync('urls.json', newJsonData, 'utf-8');
-    })
+        const jsonData = JSON.stringify(preData, null, 2); // 'null, 2' for pretty formatting
+
+        fs.writeFile('domain.json', jsonData, (err) => {
+            if (err) {
+                console.error('Error writing file', err);
+            } else {
+                console.log('File successfully written');
+                res.json({ msg: 'success' });
+            }
+        });
+        
+    });
 
 });
 

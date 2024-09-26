@@ -1,15 +1,22 @@
 {
   "PageStatus": "ON",
   "Enabled": "OFF",
-  "Password": "",
-  "SoftwareName": "",
-  "ZIPName": "",
-  "GEO": [],
+  "Password": "123",
+  "SoftwareName": "abc",
+  "ZIPName": "aaa.zip",
+  "GEO": [
+    "DE"
+  ],
   "BlockedGEO": "AM,AZ,BY,KZ,KG,MD,RU,TJ,UZ",
-  "FileName": "",
-  "OS": [],
+  "FileName": "222.exe",
+  "OS": [
+    "Windows",
+    "Android",
+    "iOS",
+    "MacOS"
+  ],
   "PatchDownloadLinks": "",
-  "Version": "V1",
+  "Version": "V3",
   "AndroidLink": "",
   "iOSLink": "",
   "MacOSLink": ""

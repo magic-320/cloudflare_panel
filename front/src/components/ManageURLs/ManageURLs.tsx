@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './ManageURLs.css';
 import axios from 'axios';
 import { useAuth } from '../../contexts/AuthContext';
+import Popup from '../Popup/Popup';
 
 const REACT_APP_BACK_API = process.env.REACT_APP_BACK_API;
 
@@ -20,9 +21,12 @@ const ManageURLs: React.FC = () => {
     const [urls, setUrls] = useState<string>(''); // To track the textarea input
     const [validUrls, setValidUrls] = useState<UrlData[]>([]); // To store valid URLs
     const [errorMessage, setErrorMessage] = useState<string>(''); // To display errors if URLs are invalid
+    const [message, setmessage] = useState<string>(''); // To display errors if URLs are invalid
     const [showWebsites, setShowWebsites] = useState<boolean>(false); // To toggle website list visibility
     const [RealTime, setRealTime] = useState<number>(0);
+    const [removeindex, setremoveindex] = useState<number>(0);
     const { userName, setUserName } = useAuth();
+    const [showPopup, setShowPopup] = useState<boolean>(false);
 
     // Improved regex to validate URLs
     const urlPattern = /^(https?:\/\/)?(www\.)?([a-zA-Z0-9\-]+(\.[a-zA-Z]{2,})+)(\/\S*)?$/;
@@ -82,25 +86,35 @@ const ManageURLs: React.FC = () => {
     };
 
     // Handler to remove a URL with confirmation
-    const handleRemoveUrl = async (index: number) => {
-        
-        const urlToRemove = validUrls[index].url;
+    const handleRemoveUrl = (index: number) => {
+
+        const urlToRemove = validUrls[removeindex].url;
+        setShowPopup(true)
+        setremoveindex(index)
+        setmessage(`Are you sure you want to delete the website: ${urlToRemove}?`);
+    };
+
+    const onConfirm = async () => {
+        const urlToRemove = validUrls[removeindex].url;
 
         // Confirmation popup
-        const confirmDelete = window.confirm(`Are you sure you want to delete the website: ${urlToRemove}?`);
-        if (!confirmDelete) return;
 
         try {
             // Remove URL from the backend
-            await axios.post(`${REACT_APP_BACK_API}/api/urls`, {removeURL: urlToRemove});
+            await axios.post(`${REACT_APP_BACK_API}/api/urls`, { removeURL: urlToRemove });
 
             // Update the local state by filtering out the removed URL
-            setValidUrls(prev => prev.filter((_, i) => i !== index));
+            setValidUrls(prev => prev.filter((_, i) => i !== removeindex));
+            setShowPopup(false)
         } catch (error) {
             console.error('Error deleting URL:', error);
             setErrorMessage('Error deleting URL');
         }
-    };
+    }
+
+    const onCancle = () => {
+        setShowPopup(false)
+    }
 
     // Get the count of URLs entered
     const urlsCount = urls.split('\n').filter(url => url.trim()).length;
@@ -170,6 +184,13 @@ const ManageURLs: React.FC = () => {
                             ))}
                         </ul>
                     </div>
+                )}
+                {showPopup && (
+                    <Popup
+                        message={message}
+                        onConfirm={onConfirm}
+                        onCancel={onCancle}
+                    />
                 )}
             </div>
         </div>

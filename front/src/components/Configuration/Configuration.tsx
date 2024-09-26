@@ -248,7 +248,7 @@ const Configuration: React.FC = () => {
     const fetchUrls = async () => {
       try {
         const response = await axios.get(`${REACT_APP_BACK_API}/api/urls`);
-        const preManageURLS = response.data.map((el:any) => el.url);
+        const preManageURLS = response.data.map((el: any) => el.url);
         setManageURLS(preManageURLS);
       } catch (error) {
         console.error('Error fetching URLs:', error);
@@ -262,7 +262,7 @@ const Configuration: React.FC = () => {
 
   // Set Settings to all sites
   const setSettingsToAllSites = async () => {
-    
+
     // send data to server and save
     const settingsData = {
       PageStatus: pagestatus ? "OFF" : "ON",
@@ -278,7 +278,7 @@ const Configuration: React.FC = () => {
       Version: Version,
       AndroidLink: AndroidLink,
       iOSLink: iOSLink,
-      MacOSLink: MacOSLink 
+      MacOSLink: MacOSLink
     }
 
     for (const site of manageURLS) {
@@ -309,7 +309,7 @@ const Configuration: React.FC = () => {
       Version: Version,
       AndroidLink: AndroidLink,
       iOSLink: iOSLink,
-      MacOSLink: MacOSLink 
+      MacOSLink: MacOSLink
     }
 
     console.log(settingsData);
@@ -414,7 +414,7 @@ const Configuration: React.FC = () => {
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <label style={{ opacity: pagestatus ? 0.5 : 1 }}>Page Status</label>
               {/* Pass the pagestatus to ToggleSwitch to ensure its state reflectFs the current status */}
-              <ToggleSwitch disable={false} onToggle={handleToggle} onArchive={() => { }} initialStatus={!pagestatus} />
+              <ToggleSwitch disable={false} onToggle={handleToggle} onArchive={() => handleArchive(false)} initialStatus={!pagestatus} />
             </div>
             <div style={{ marginBottom: "10px", justifyContent: "space-between", display: "flex", alignItems: 'center', color: "#fff" }}>
               <label style={{ opacity: pagestatus ? 0.5 : 1 }}>Version:</label>
@@ -460,29 +460,29 @@ const Configuration: React.FC = () => {
           <div className="form-group" style={{ flexDirection: "column" }}>
             <label style={{ opacity: pagestatus ? 0.5 : 1 }} >GEO Blocked (CIS)</label>
             <textarea style={{ opacity: pagestatus ? 0.5 : 1, height: "17px" }}
-                value={
-                  countries
-                    .map((country: { name: string; code: string }) => 
-                      BlockedGEO.split(',')
-                        .map((geo: string) => country.code === geo ? country.name : null)
-                        .filter(Boolean) // Filter out null values
-                    )
-                    .flat() // Flatten the array of arrays
-                    .join(', ') // Join the resulting array into a string
-                } 
-                readOnly
+              value={
+                countries
+                  .map((country: { name: string; code: string }) =>
+                    BlockedGEO.split(',')
+                      .map((geo: string) => country.code === geo ? country.name : null)
+                      .filter(Boolean) // Filter out null values
+                  )
+                  .flat() // Flatten the array of arrays
+                  .join(', ') // Join the resulting array into a string
+              }
+              readOnly
             ></textarea>
           </div>
           <div className="form-group" style={{ flexDirection: "column" }}>
             <label style={{ opacity: pagestatus ? 0.5 : 1 }}>Allowed GEO</label>
             <div className="country-select-container">
               <select
+                disabled={pagestatus}
                 style={{ opacity: pagestatus ? 0.5 : 1 }}
                 className="country-select"
                 value={selectedCountry}
                 onChange={(e) => setSelectedCountry(e.target.value)}
               >
-                <option value="">Select a country</option>
                 {countries.map((country, index) => (
                   <option key={index} value={country.code}>
                     {country.name}
@@ -540,42 +540,42 @@ const Configuration: React.FC = () => {
                   <label
                     style={{ opacity: pagestatus ? 0.5 : 1, fontSize: "15px", display: "flex", gap: "5px" }} className='configuration-label'><input type="checkbox" disabled={pagestatus}
                       onChange={(e) => handleOSChange('Android', e.target.checked)} /> <IoLogoAndroid color='#54ff00' />Android</label>
-                    <div style={{marginBottom: '5px', display: OS.includes('Android') ? 'block' : 'none'}}>
-                      <div>Android Link:</div>
-                      <input
-                        className='set_file_name'
-                        style={{ width: "230px", opacity: pagestatus ? 0.5 : 1, padding: "5px", border: "1px #ffffff7a solid", borderRadius: "4px", backgroundColor: "#565454", marginTop: '3px' }}
-                        type="text"
-                        value={AndroidLink}
-                        onChange={onAndroidLink}
-                      />
-                    </div>
+                  <div style={{ marginBottom: '5px', display: OS.includes('Android') ? 'block' : 'none' }}>
+                    <div>Android Link:</div>
+                    <input
+                      className='set_file_name'
+                      style={{ width: "230px", opacity: pagestatus ? 0.5 : 1, padding: "5px", border: "1px #ffffff7a solid", borderRadius: "4px", backgroundColor: "#565454", marginTop: '3px' }}
+                      type="text"
+                      value={AndroidLink}
+                      onChange={onAndroidLink}
+                    />
+                  </div>
                   <label
                     style={{ opacity: pagestatus ? 0.5 : 1, fontSize: "15px", display: "flex", gap: "5px" }} className='configuration-label'><input type="checkbox" disabled={pagestatus}
                       onChange={(e) => handleOSChange('iOS', e.target.checked)} />  <SiApple color='#222' />iOS</label>
-                      <div style={{marginBottom: '5px', display: OS.includes('iOS') ? 'block' : 'none'}}>
-                      <div>iOS Link:</div>
-                        <input
-                          className='set_file_name'
-                          style={{ width: "230px", opacity: pagestatus ? 0.5 : 1, padding: "5px", border: "1px #ffffff7a solid", borderRadius: "4px", backgroundColor: "#565454", marginTop: '3px' }}
-                          type="text"
-                          value={iOSLink}
-                          onChange={oniOSLink}
-                        />
-                      </div>
+                  <div style={{ marginBottom: '5px', display: OS.includes('iOS') ? 'block' : 'none' }}>
+                    <div>iOS Link:</div>
+                    <input
+                      className='set_file_name'
+                      style={{ width: "230px", opacity: pagestatus ? 0.5 : 1, padding: "5px", border: "1px #ffffff7a solid", borderRadius: "4px", backgroundColor: "#565454", marginTop: '3px' }}
+                      type="text"
+                      value={iOSLink}
+                      onChange={oniOSLink}
+                    />
+                  </div>
                   <label
                     style={{ opacity: pagestatus ? 0.5 : 1, fontSize: "15px", display: "flex", gap: "5px" }} className='configuration-label'><input type="checkbox" disabled={pagestatus}
                       onChange={(e) => handleOSChange('MacOS', e.target.checked)} />  <SiMacos />Mac OS</label>
-                      <div style={{marginBottom: '5px', display: OS.includes('MacOS') ? 'block' : 'none'}}>
-                        <div>Mac OS Link:</div>
-                        <input
-                          className='set_file_name'
-                          style={{ width: "230px", opacity: pagestatus ? 0.5 : 1, padding: "5px", border: "1px #ffffff7a solid", borderRadius: "4px", backgroundColor: "#565454", marginTop: '3px' }}
-                          type="text"
-                          value={MacOSLink}
-                          onChange={onMacOsLink}
-                        />
-                      </div>
+                  <div style={{ marginBottom: '5px', display: OS.includes('MacOS') ? 'block' : 'none' }}>
+                    <div>Mac OS Link:</div>
+                    <input
+                      className='set_file_name'
+                      style={{ width: "230px", opacity: pagestatus ? 0.5 : 1, padding: "5px", border: "1px #ffffff7a solid", borderRadius: "4px", backgroundColor: "#565454", marginTop: '3px' }}
+                      type="text"
+                      value={MacOSLink}
+                      onChange={onMacOsLink}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
