@@ -415,26 +415,6 @@ const WebsiteURLs: React.FC = () => {
   }
 
 
-  // get site alive
-  const isAlive = async (site: any) => {
-    await fetch(site, {
-      method: 'GET',
-      mode: 'no-cors' // This is used for non-CORS sites; you might want to change it based on your site
-    })
-      .then((response) => {
-        // If the response is ok (status code in the range 200-299)
-        if (response.ok || response.status === 0) {
-          return true;
-        } else {
-          return false
-        }
-      })
-      .catch((error) => {
-        return true;
-      });
-
-  }
-
   // get download count
   const getDownloadCount = (data: any, country_code: any) => {
     let count: number = 0;
@@ -475,8 +455,10 @@ const WebsiteURLs: React.FC = () => {
 
   // fetch csv info from all sites
   const getInfoFromSites = async (site: any) => {
-    try {
 
+    const result = await fetch(site.url, { method: "HEAD", mode: 'no-cors' });
+    
+    if (result.ok) {
       const res = await axios.post(`${site.url}/api/getData.php`)
 
       let tmpData: any = {};
@@ -484,21 +466,33 @@ const WebsiteURLs: React.FC = () => {
       tmpData.url = site.url;
       tmpData.visitors = res.data.length;
       tmpData.totalDownloads = res.data.filter((el: any) => el.isDownload == 'Downloaded').length;
-      tmpData.lastDownload = res.data.reverse().filter((el: any) => el.isDownload == 'Downloaded')[0].date;
+      tmpData.lastDownload = res.data.reverse().filter((el: any) => el.isDownload == 'Downloaded').length > 0 ? res.data.reverse().filter((el: any) => el.isDownload == 'Downloaded')[0].date : '';
       const tmp_country_code: string = getCountryCode(res.data);
       tmpData.countryCode = tmp_country_code;
       tmpData.countryName = getCountryName(tmp_country_code);
       tmpData.downloadCount = getDownloadCount(res.data, tmp_country_code);
-      tmpData.isLive = isAlive(site.url);
+      tmpData.isLive = true;
       tmpData.isReset = site.reset;
       tmpData.who = site.who;
 
       return tmpData;
+    
+    } else {
+      
+      let tmpData: any = {};
 
-    } catch (err) {
-      console.log('=======================')
-      console.log(err)
-      throw err;
+      tmpData.url = site.url;
+      tmpData.visitors = "--";
+      tmpData.totalDownloads = "--";
+      tmpData.lastDownload = "--";
+      tmpData.countryCode = "--";
+      tmpData.countryName = "--";
+      tmpData.downloadCount = "--";
+      tmpData.isLive = false;
+      tmpData.isReset = site.reset;
+      tmpData.who = site.who;
+
+      return tmpData;
     }
   }
 
