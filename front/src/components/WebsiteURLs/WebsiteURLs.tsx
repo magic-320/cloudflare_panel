@@ -456,44 +456,43 @@ const WebsiteURLs: React.FC = () => {
   // fetch csv info from all sites
   const getInfoFromSites = async (site: any) => {
 
-    const result = await fetch(site.url, { method: "HEAD", mode: 'no-cors' });
-    
-    if (result.ok) {
-      const res = await axios.post(`${site.url}/api/getData.php`)
+    try {
+          const res = await axios.post(`${site.url}/api/getData.php`)
 
-      let tmpData: any = {};
+          let tmpData: any = {};
 
-      tmpData.url = site.url;
-      tmpData.visitors = res.data.length;
-      tmpData.totalDownloads = res.data.filter((el: any) => el.isDownload == 'Downloaded').length;
-      tmpData.lastDownload = res.data.reverse().filter((el: any) => el.isDownload == 'Downloaded').length > 0 ? res.data.reverse().filter((el: any) => el.isDownload == 'Downloaded')[0].date : '';
-      const tmp_country_code: string = getCountryCode(res.data);
-      tmpData.countryCode = tmp_country_code;
-      tmpData.countryName = getCountryName(tmp_country_code);
-      tmpData.downloadCount = getDownloadCount(res.data, tmp_country_code);
-      tmpData.isLive = true;
-      tmpData.isReset = site.reset;
-      tmpData.who = site.who;
+          tmpData.url = site.url;
+          tmpData.visitors = res.data.length;
+          tmpData.totalDownloads = res.data.filter((el: any) => el.isDownload == 'Downloaded').length;
+          tmpData.lastDownload = res.data.reverse().filter((el: any) => el.isDownload == 'Downloaded').length > 0 ? res.data.reverse().filter((el: any) => el.isDownload == 'Downloaded')[0].date : '';
+          const tmp_country_code: string = getCountryCode(res.data);
+          tmpData.countryCode = tmp_country_code;
+          tmpData.countryName = getCountryName(tmp_country_code);
+          tmpData.downloadCount = getDownloadCount(res.data, tmp_country_code);
+          tmpData.isLive = true;
+          tmpData.isReset = site.reset;
+          tmpData.who = site.who;
 
-      return tmpData;
-    
-    } else {
-      
-      let tmpData: any = {};
+          return tmpData;
 
-      tmpData.url = site.url;
-      tmpData.visitors = "--";
-      tmpData.totalDownloads = "--";
-      tmpData.lastDownload = "--";
-      tmpData.countryCode = "--";
-      tmpData.countryName = "--";
-      tmpData.downloadCount = "--";
-      tmpData.isLive = false;
-      tmpData.isReset = site.reset;
-      tmpData.who = site.who;
+      } catch (err) {
 
-      return tmpData;
-    }
+        let tmpData: any = {};
+
+          tmpData.url = site.url;
+          tmpData.visitors = "--";
+          tmpData.totalDownloads = "--";
+          tmpData.lastDownload = "--";
+          tmpData.countryCode = "--";
+          tmpData.countryName = "--";
+          tmpData.downloadCount = "--";
+          tmpData.isLive = false;
+          tmpData.isReset = site.reset;
+          tmpData.who = site.who;
+
+          return tmpData;
+          throw err;
+      }
   }
 
 
